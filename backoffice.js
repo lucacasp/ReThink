@@ -12,6 +12,10 @@ const createItem = async () => {
     imageUrl: document.querySelector("#image-item").value,
     description: document.querySelector("#description-item").value,
   }
+  if(Object.values(newItem).some(value => value === "")){
+    console.log("Errore, uno dei valori inseriti non è stato compilato correttamente");
+    return; // Esco dalla funzione 
+  }
   console.log(newItem)
   // Effettuo una richiesta POST per creare un nuovo prodotto
   let response = await fetch(url, {
@@ -23,15 +27,34 @@ const createItem = async () => {
     body:JSON.stringify(newItem), // Converto l'oggetto in JSON
   })
   // Se la richiesta ha successo, ricarico la pagina
-  if (response.ok) {
-    alert("Caricato!");
+  .then((response) => response.json())
+  .then((nuovoProdotto)=>{
+    aggiungiCardProdotto(nuovoProdotto);
+    console.log("Prodotto aggiunto con successo! ")
     clearForm();
-    /* window.location.reload(); */
-  } else {
-    /* console.log(response) */
-    // Se la richiesta fallisce, genero un errore con il messaggio di stato della risposta
-    alert("C'è qualcosa che non va, prova di nuovo, errore " + response.status)
-  }
+  })
+  .catch((error) => {
+    console.error("Errore durante l'aggiunta del prodotto: ", error);
+  })
+}
+// funzione per aggiungere una card al div resultCard
+function aggiungiCardProdotto(prodotto) { // passo l'oggetto prodotto
+  const card = document.createElement("div"); // Creo una nuova card
+  card.className = "product-card"; // Aggiungo la classe CSS
+
+  // creo tag per il nome del prodotto, la marca, il prezzo e l'immagine
+  const nomeProdotto = document.createElement("h3", prodotto.name);
+  const marcaProdotto = document.createElement("p", prodotto.brand);
+  const prezzoProdotto = document.createElement("p", prodotto.price);
+  const immagineProdotto = document.createElement("img", prodotto.imageUrl);
+
+// aggiungo gli elementi alla scheda prodotto
+  card.appendChild(nomeProdotto);
+  card.appendChild(marcaProdotto);
+  card.appendChild(prezzoProdotto);
+  card.appendChild(immagineProdotto);
+
+
 }
 // funzione per pulire i campi del form di inserimento
 const clearForm = () => {
@@ -41,6 +64,7 @@ const clearForm = () => {
   document.querySelector("#image-item").value = "";
   document.querySelector("#description-item").value = "";
 }
+
 
 // Aggiungo un event listener al pulsante di invio del form per chiamare la funzione createItem()
 
@@ -62,7 +86,7 @@ const getProducts = async () => {
 // chiamo la funzione per ottenere i prodotti
 getProducts();
 
-/* const displayProducts = (products) => {
+ displayProducts = (products) => {
   const resultCard = document.getElementById("resultCard");
 
   // Controllo se ci sono prodotti da visualizzare
@@ -72,7 +96,7 @@ getProducts();
   }
 
   // Creo una stringa HTML per ogni prodotto
-  const productsHTML = products.map(product => `
+/*   const productsHTML = products.map(product => `
     <div class="card mb-3">
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -89,8 +113,9 @@ getProducts();
       </div>
     </div>
   `).join("");
-
-  // Inserisco la stringa HTML nel div resultCard
+}
+/* */
+ // Inserisco la stringa HTML nel div resultCard
   resultCard.innerHTML = productsHTML;
 }
 
@@ -107,4 +132,4 @@ const getStampProducts = async () => {
     console.error("Errore durante il recupero dei prodotti:", error);
   }
 }
- */
+ 
