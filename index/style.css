@@ -1,15 +1,35 @@
-.navbar-brand .super-mega-banana{
+  /*  index */
+  .container-content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .first-content,
+  .second-content,
+  .third-content{
+    width: calc(100% / 3); /* imposto quindi la larghezza a 33,3periodico */
+    padding: 15px;
+  }
+  .first-content-icon,
+  .second-content-icon,
+  .third-content-icon{
+    width: 50px;
+    height: 50px;
+    background-color: #F8F9FA;
+    margin-right: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+  }
+
+
+  /* all */
+  .navbar-brand .super-mega-banana{
     width: 40px;
     margin-right: 20px;
 }
-.navbar-brand h1{
+  .navbar-brand h1{
     font-size: 3rem;
 }
-
-.form-control{
-    font-size: smaller;
-}
-  /* all */
   .social-icon{
     cursor: pointer;
   }
@@ -30,7 +50,10 @@
   }
   
   /* backoffice css */
-  .edit,
+  .form-control{
+    font-size: smaller;
+}
+  .editButton,
   .delete{
     background-color: #212529;
     color: #FFF;
@@ -42,7 +65,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     cursor: pointer;
   }
-  .edit:hover{
+  .editButton:hover{
     transform: scale(1.1);
     background: #00CC00;
   }
