@@ -21,7 +21,10 @@
     border-radius: 8px;
     cursor: pointer;
   }
-
+  /* product */
+  #single-card{
+    width: 100%;
+  }
 
   /* all */
   .navbar-brand .super-mega-banana{
