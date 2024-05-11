@@ -1,9 +1,9 @@
 // Definizione dell'URL dell'API e del token di autenticazione
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNhMjYyMjBiM2IyNTAwMTUxYjU0M2EiLCJpYXQiOjE3MTUyNTIyMzQsImV4cCI6MTcxNjQ2MTgzNH0.h_2_BEPFJe2GpPTcm4J2ewe9wwjgLlUqzetC1PbQemU"
-/* ----------------------------------------------------------------------------- GET */
 
 document.addEventListener("DOMContentLoaded", function(){
+/* ----------------------------------------------------------------------------- GET */
 
 const ottieniProdotti = async () => {
   // Recupero i valori inseriti dall'utente nei campi del form
@@ -76,8 +76,8 @@ function aggiungiCardProdotto(prodotto) { // passo l'oggetto prodotto
   const buttonModifica = document.createElement("div"); // creo elemento div -----TODO
   buttonModifica.classList.add("edit"); // aggiungo classe css
   buttonModifica.textContent = "Modifica"; // imposto il testo nel btn 
-  buttonModifica.onclick = () => modificaProdotto(prodotto._id, card); // aggiungo l'event listener per modificare il prodotto
-  //bottone elimina
+/*   buttonModifica.onclick = () => editProduct(prodotto._id, card); // aggiungo l'event listener per modificare il prodotto
+ */  //bottone elimina
   const buttonElimina = document.createElement("button"); //creo elemento div 
   buttonElimina.classList.add("delete"); // aggiungo la classe css
   buttonElimina.textContent = "Elimina"; // imposto il testo nel btn
@@ -113,10 +113,10 @@ const clearForm = () => {
   document.querySelector("#description-item").value = "";
 }
 
-/* // Aggiungo un event listener al pulsante di invio del form per chiamare la funzione createItem()
+//Aggiungo un event listener al pulsante di invio del form per chiamare la funzione createItem()
 document.getElementById("submitBtn").addEventListener("click", createItem)
 // funzione per eliminare prodotto da backoffice
-function cancellaProdotto (prodottoId, card) {
+/* function cancellaProdotto (prodottoId, card) {
   fetch(`https://striveschool-api.herokuapp.com/api/product/"${prodottoId}`,{
     method: "DELETE", // metodo HTTP DELETE per eliminare risorse
     headers: {
@@ -132,28 +132,117 @@ function cancellaProdotto (prodottoId, card) {
     // gestione dell'errore, errore in console
   })
   ottieniProdotti();
-} */
+}  */
 
-
-// Funzione per eliminare un prodotto
-  const deleteProduct = async (id) => {
-    // Effettuo la chimata HTTP passando anche come paramtro l'ID
-    const res = await fetch (url + id, {
-      method: "DELETE", // Utilizzo il metodo DELETE per rimuovere l'elemento 
-      headers: {
-        'Authorization': `Bearer ${TOKEN}`
-      }
-    })
-    // Se la risposta va a buon fine esegue queste operazioni
-    if (res.ok) {
-      // Mostra un messaggio di conferma
-      alert('Prodotto eliminato con successo!');
-      // Chiama la funzione ottieniProdotti per aggiornare la lista dei prodotti
-      await ottieniProdotti();
-    } else {
-      console.error("Errore nell'eliminazione del prodotto");
+/// Funzione per eliminare un prodotto
+const deleteProduct = async (id, card) => {
+  // Effettuo la chimata HTTP passando anche come parametro l'ID
+  const res = await fetch(url + id, {
+    method: "DELETE", // Utilizzo il metodo DELETE per rimuovere l'elemento 
+    headers: {
+      'Authorization': `Bearer ${TOKEN}`
     }
+  });
+  // Se la risposta va a buon fine esegue queste operazioni
+  if (res.ok) {
+    // Mostra un messaggio di conferma
+    alert('Prodotto eliminato con successo!');
+    card.remove();
+  } else {
+    console.error("Errore nell'eliminazione del prodotto");
   }
-  // Fine funzione per eliminare un prodotto
-  
+}
 })
+/* 
+// Funzione modifica prodotto 
+const getProductForm = async (idInInput) => {
+  const id = idInInput || paramId;
+  if(id){
+    const response = await fetch (url + id);
+    const prodotto = await response.json();
+    // aggiorno i valori inseriti nel form con i dati dell'utente
+    document.getElementById("name-item").value = prodotto.name;
+    document.getElementById("brand-item").value = prodotto.brand;
+    document.getElementById("price-item").value = prodotto.price;
+    document.getElementById("image-item").value = prodotto.imageUrl;
+    document.getElementById("description-item").value = prodotto.description;
+  }
+}
+
+const editProduct = async () => {
+  const id = document.querySelector("#id-item").value;
+  const name = document.querySelector("#name-item").value;
+  const brand = document.querySelector("#brand-item").value;
+  const price = document.querySelector("#price-item").value;
+  const imageUrl = document.querySelector("#image-item").value;
+  const description = document.querySelector("#description-item").value;
+  const updatedProduct = {
+    name,
+    brand,
+    price,
+    imageUrl,
+    description
+  };
+  const response = await fetch(url + id, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${TOKEN}`
+    },
+    body: JSON.stringify(updatedProduct)
+  });
+  if (response.ok){
+    alert("Prodotto aggiornato con successo!");
+    //chiamo la funzione ottieniProdotti() per mostrare la lista aggiornata dei prodotti
+    await ottieniProdotti();
+  }
+} */
+// Funzione per aggiornare un prodotto
+
+
+/* 
+const editProduct = async (id) => {
+  if (id) {
+      const response = await fetch(url + id, {
+          headers: {
+              "Authorization": `Bearer ${TOKEN}`
+            }
+      });
+      const item = await response.json();
+
+    // Assegna i valori dell'item agli input
+    document.getElementById("name-item").value = prodotto.name;
+    document.getElementById("brand-item").value = prodotto.brand;
+    document.getElementById("price-item").value = prodotto.price;
+    document.getElementById("image-item").value = prodotto.imageUrl;
+    document.getElementById("description-item").value = prodotto.description;
+  }
+};
+
+
+const updateProduct = async (id) => {
+  const name = document.querySelector('.name-item').value;
+  const brand = document.querySelector('.brand-item').value;
+  const price = document.querySelector('.price-item').value;
+  const imageUrl = document.querySelector('.img-item').value;
+  const description = document.querySelector('.description-item').value;
+
+  const updatedItem = { name, brand, price, imageUrl, description };
+
+  const response = await fetch(url + id, {
+      method: "PUT",
+      headers: {
+          "Authorization": `Bearer ${TOKEN}`,
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedItem)
+  });
+
+  if (response.ok) {
+      alert('Elemento aggiornato con successo');
+      // Ricarica la pagina per visualizzare gli aggiornamenti
+      window.location.reload();
+  } else {
+      throw new Error('Error: ' + errore);
+  }
+}; */
