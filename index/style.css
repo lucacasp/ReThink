@@ -20,7 +20,13 @@
     width: 300px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin: 15px auto;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-img-top{
+    width: 100%;
+    height: auto;
   }
   
   /* backoffice css */
