@@ -1,29 +1,21 @@
   /*  index */
-  .container-content{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .first-content,
-  .second-content,
-  .third-content{
-    width: calc(100% / 3); /* imposto quindi la larghezza a 33,3periodico */
-    padding: 15px;
-  }
-  .first-content-icon,
-  .second-content-icon,
-  .third-content-icon{
-    width: 50px;
+.list-group-icon-box{
+  width: 60px;
     height: 50px;
     background-color: #F8F9FA;
     margin-right: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     cursor: pointer;
-  }
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
   /* all */
+  a{
+    text-decoration: none;
+  }
   .navbar-brand .super-mega-banana{
     width: 40px;
     margin-right: 20px;
@@ -33,6 +25,14 @@
 }
   .social-icon{
     cursor: pointer;
+  }
+  .social-icon-i-footer i{
+    color: #212529;
+    font-size: 1.2rem;
+  }
+  .social-icon-i-navbar i{
+    color: #FFF;
+    font-size: 1.2rem;
   }
   .card {
     border: 1px solid #ccc;
