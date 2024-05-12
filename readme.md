@@ -8,5 +8,4 @@ dove l'utente prende visione dei prodotti messi in vendita.
 ### Aggiungi prodotto:
  dove l'utente (ideologicamente loggato con dovute autenticazioni) ha la possibilità di aggiungere il prodotto tramite FORM, infine è possibile MODIFICARE e CANCELLARE il prodotto.
 ## Tecnologie utilizzate:
-FE: HTML, CSS, JavaScript
-Framework: Bootstrap
+FE: HTML, CSS, JavaScript, Bootstrap
