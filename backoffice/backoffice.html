@@ -116,11 +116,54 @@
       </div>
         <h2 class="mt-4 mb-4">Prodotti inseriti:</h2>
         <div id="container-cards" class="container-fluid row d-flex col-12 justify-content-around">
-        
+          <!-- visualizzazione cards -->
         </div>
       </div>
     </div>
-     
+    <!-- modal section -->
+    <!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Modifica Prodotto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Form per la modifica del prodotto -->
+          <form id="editForm">
+            <!-- Input per i campi da modificare -->
+            <div class="mb-3">
+              <label for="edit-name" class="form-label">Nome prodotto</label>
+              <input type="text" class="form-control" id="edit-name" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-brand" class="form-label">Brand</label>
+              <input type="text" class="form-control" id="edit-brand" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-price" class="form-label">Prezzo prodotto</label>
+              <input type="number" class="form-control" id="edit-price" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-image" class="form-label">Immagine prodotto</label>
+              <input type="url" class="form-control" id="edit-image" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-description" class="form-label">Descrizione prodotto</label>
+              <textarea class="form-control" id="edit-description" rows="3"></textarea>
+            </div>
+            <input type="hidden" id="edit-id">
+            <!-- Button per l'invio del form -->
+            <button type="button" class="btn btn-dark " data-bs-dismiss="modal">Annulla</button>
+
+            <button type="submit" class="btn btn-primary">Salva modifiche</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
     </main>
 
     <footer class="text-body-secondary py-5">

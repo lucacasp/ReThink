@@ -23,41 +23,6 @@ const ottieniProdotti = async () => {
 
 const cardContainer = document.getElementById("container-cards")
 
-function aggiungiCardProdotto(prodotto) { // passo l'oggetto prodotto
-    const card = document.createElement("div"); // Creo una nuova card
-    card.className = "card"; // Aggiungo la classe CSS alla card
-    // creo tag per il nome del prodotto, la marca, il prezzo e l'immagine
-    const immagineProdotto = document.createElement("img");
-    immagineProdotto.className = "card-img-top"; // Aggiungo la classe per lo stile Bootstrap
-  // Imposto l'URL dell'immagine del prodotto come attributo src dell'elemento immagine
-    immagineProdotto.src = prodotto.imageUrl; // Assicurati che l'URL sia corretto e contenga l'indirizzo completo dell'immagine
-    const nomeProdotto = document.createElement("h3");
-    const marcaProdotto = document.createElement("p");
-    const descrizioneProdotto = document.createElement("p");
-    const prezzoProdotto = document.createElement("p");
-    const visualizzaProdotto = document.createElement("button");
-    visualizzaProdotto.className = "btn btn-primary";
-    
-    // imposto i valori dei tag creati
-    immagineProdotto.innerText = prodotto.imageUrl;
-    nomeProdotto.innerText = prodotto.name;
-    marcaProdotto.innerText = prodotto.brand;
-    descrizioneProdotto.innerText = prodotto.description;
-    prezzoProdotto.innerText = prodotto.price; 
-    visualizzaProdotto.innerText = "Visualizza"; 
-  
-  // aggiungo gli elementi alla scheda prodotto
-  card.appendChild(immagineProdotto);
-  card.appendChild(nomeProdotto);
-  card.appendChild(marcaProdotto);
-  card.appendChild(prezzoProdotto);
-  card.appendChild(descrizioneProdotto);
-  card.appendChild(visualizzaProdotto);
-  
-    cardContainer.appendChild(card) ;
-  }
-
-
 // Funzione per aggiungere una card al div product-card
 function aggiungiCardProdotto(prodotto) {
   const card = document.createElement("div"); // Creo una nuova card
@@ -71,30 +36,21 @@ function aggiungiCardProdotto(prodotto) {
   const marcaProdotto = document.createElement("p");
   const descrizioneProdotto = document.createElement("p");
   const prezzoProdotto = document.createElement("p");
-  const visualizzaProdotto = document.createElement("button");
-  visualizzaProdotto.className = "btn btn-dark";
 
   // imposto i valori dei tag creati
-  immagineProdotto.innerText = prodotto.imageUrl;
+  immagineProdotto.src = prodotto.imageUrl;
   nomeProdotto.innerText = prodotto.name;
   marcaProdotto.innerText = prodotto.brand;
   descrizioneProdotto.innerText = prodotto.description;
   prezzoProdotto.innerText = prodotto.price;
-  visualizzaProdotto.innerText = "Visualizza";
-
-  // Aggiungi un gestore di eventi al pulsante "Visualizza"
-  visualizzaProdotto.addEventListener("click", () => {
-      // Reindirizza l'utente a una nuova pagina con i dettagli del prodotto
-      window.location.href = `/home/index/product.html?id${prodotto._id}`;
-  });
-
+  
   // aggiungo gli elementi alla scheda prodotto
   card.appendChild(immagineProdotto);
   card.appendChild(nomeProdotto);
   card.appendChild(marcaProdotto);
   card.appendChild(prezzoProdotto);
   card.appendChild(descrizioneProdotto);
-  card.appendChild(visualizzaProdotto);
+
 
   cardContainer.appendChild(card);
 }

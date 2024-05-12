@@ -122,11 +122,29 @@
             </div>
         </div>
       </section>
-      <div class="album py-5 bg-body-tertiary">
-        <div id="container-cards" class="d-flex">
-          <!-- visualizzazioni card -->
+        <div  class="container">
+          <div class="row">
+            <div id="container-cards" class="container-fluid row d-flex col-12 justify-content-around">
+              <!-- visualizzazione cards -->
+            </div>
+          </div>
         </div>
-      </div>
+        <!-- modal section -->
+        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Dettagli Prodotto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="productDetails">
+                  <!-- Qui verranno inseriti dinamicamente i dettagli del prodotto -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </main>
     <footer class="text-body-secondary py-5">
       <div class="container">
@@ -145,7 +163,7 @@
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+
     <script src="script.js"></script>
   </body>
 </html>

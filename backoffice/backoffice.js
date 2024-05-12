@@ -1,7 +1,6 @@
 // Definizione dell'URL dell'API e del token di autenticazione
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNhMjYyMjBiM2IyNTAwMTUxYjU0M2EiLCJpYXQiOjE3MTUyNTIyMzQsImV4cCI6MTcxNjQ2MTgzNH0.h_2_BEPFJe2GpPTcm4J2ewe9wwjgLlUqzetC1PbQemU"
-
 document.addEventListener("DOMContentLoaded", function(){
 /* ----------------------------------------------------------------------------- GET */
 
@@ -70,7 +69,7 @@ function aggiungiCardProdotto(prodotto) { // passo l'oggetto prodotto
   immagineProdotto.className = "card-img-top"; // Aggiungo la classe per lo stile Bootstrap
   // Imposto l'URL dell'immagine del prodotto come attributo src dell'elemento immagine
   immagineProdotto.src = prodotto.imageUrl; // Assicurati che l'URL sia corretto e contenga l'indirizzo completo dell'immagine
-    const nomeProdotto = document.createElement("h3");
+  const nomeProdotto = document.createElement("h3");
   const marcaProdotto = document.createElement("p");
   const descrizioneProdotto = document.createElement("p");
   const prezzoProdotto = document.createElement("p");
@@ -136,8 +135,56 @@ const deleteProduct = async (id, card) => {
   }
 }
 })
+
+// Funzione per modificare un prodotto
+const editProduct = async (id, name, brand, price, imageUrl, description) => {
+  const updatedItem = {
+    name: name,
+    brand: brand,
+    price: price,
+    imageUrl: imageUrl,
+    description: description,
+  };
+
+  try {
+    const response = await fetch(url + id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${TOKEN}`,
+      },
+      body: JSON.stringify(updatedItem),
+    });
+
+    if (response.ok) {
+      // Se la modifica va a buon fine, aggiorna la card del prodotto
+      const updatedProduct = await response.json();
+      updateProductCard(id, updatedProduct);
+      alert('Prodotto modificato con successo!');
+      location.reload();
+    } else {
+      console.error('Errore durante la modifica del prodotto:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Errore durante la modifica del prodotto:', error);
+  }
+};
+
+// Funzione per aggiornare i dettagli di una card prodotto dopo la modifica
+const updateProductCard = (id, updatedProduct) => {
+  const card = document.querySelector(`#container-cards .card[data-id="${id}"]`);
+  if (card) {
+    card.querySelector('.card-img-top').src = updatedProduct.imageUrl;
+    card.querySelector('h3').innerText = updatedProduct.name;
+    card.querySelector('p:nth-of-type(1)').innerText = updatedProduct.brand;
+    card.querySelector('p:nth-of-type(2)').innerText = updatedProduct.description;
+    card.querySelector('p:nth-of-type(3)').innerText = updatedProduct.price;
+  }
+};
+
 // Funzione per gestire l'apertura del modal di modifica
-const openEditModal = (prodotto) => {
+const openEditModal = (prodottoData) => {
+  prodotto = prodottoData;
   document.getElementById("edit-name").value = prodotto.name;
   document.getElementById("edit-brand").value = prodotto.brand;
   document.getElementById("edit-price").value = prodotto.price;
@@ -153,6 +200,10 @@ const openEditModal = (prodotto) => {
 // Aggiungi un event listener per il submit del form di modifica
 document.getElementById("editForm").addEventListener("submit", async (event) => {
   event.preventDefault(); // Evita il comportamento di default del submit
+  if(!prodotto){
+    console.log("Variabile prodotto non definita");
+    return;
+  }
   const id = prodotto._id; // ID del prodotto da modificare
   const name = document.getElementById("edit-name").value;
   const brand = document.getElementById("edit-brand").value;
@@ -167,5 +218,7 @@ document.getElementById("editForm").addEventListener("submit", async (event) => 
   // Chiamata alla funzione editProduct per modificare il prodotto
   await editProduct(id, name, brand, price, imageUrl, description);
 });
+
+
 
 
