@@ -36,13 +36,22 @@ function aggiungiCardProdotto(prodotto) {
   const marcaProdotto = document.createElement("p");
   const descrizioneProdotto = document.createElement("p");
   const prezzoProdotto = document.createElement("p");
+// creo il button visualizza
+  const buttonVisualizza = document.createElement("button");
+  buttonVisualizza.className = "btn btn-dark";
+  buttonVisualizza.textContent = "Visualizza";
+  buttonVisualizza.addEventListener("click", function(){
+    const productId = prodotto._id; // ottengo l'id del prodotto
+    const productPageUrl = `/product/product.html?id=${productId}`; // imposto l'url della pagina del prodotto
+    window.location.href = productPageUrl;
+  })
 
   // imposto i valori dei tag creati
   immagineProdotto.src = prodotto.imageUrl;
   nomeProdotto.innerText = prodotto.name;
   marcaProdotto.innerText = prodotto.brand;
   descrizioneProdotto.innerText = prodotto.description;
-  prezzoProdotto.innerText = prodotto.price;
+  prezzoProdotto.innerText = "€ " + prodotto.price;
   
   // aggiungo gli elementi alla scheda prodotto
   card.appendChild(immagineProdotto);
@@ -50,8 +59,18 @@ function aggiungiCardProdotto(prodotto) {
   card.appendChild(marcaProdotto);
   card.appendChild(prezzoProdotto);
   card.appendChild(descrizioneProdotto);
+  card.appendChild(buttonVisualizza);
 
 
   cardContainer.appendChild(card);
+
+  cardContainer.addEventListener('click', function(event){
+  if(event.target.classlist.contains('visualizza-btn')){
+    const productId = event.target.dataset.id;
+    window.location.href = `/product/product.html?id=${productId}`;
+  }
+})
 }
+
+
 })

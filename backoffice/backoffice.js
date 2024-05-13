@@ -91,7 +91,7 @@ function aggiungiCardProdotto(prodotto) { // passo l'oggetto prodotto
   nomeProdotto.innerText = prodotto.name;
   marcaProdotto.innerText = prodotto.brand;
   descrizioneProdotto.innerText = prodotto.description;
-  prezzoProdotto.innerText = prodotto.price;
+  prezzoProdotto.innerText = "€ " + prodotto.price;
   buttonModifica.innerHTML = "Modifica";
   buttonElimina.innerHTML = "Elimina";
 
