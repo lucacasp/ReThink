@@ -91,13 +91,16 @@ a{
 
 /* product */
 
-
-
 .img-detail{
   width: 100%;
 }
 
-/* dataSecurity */
+/* dataSecurity,
+support,
+certificate */
+#body-container-content{
+  height: 600px;
+}
 
 .content-privacy{
   display: flex;

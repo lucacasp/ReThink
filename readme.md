@@ -14,4 +14,4 @@ Il reinderizzo della card in homepage trasporta l'utente nella pagina specifica 
 #### Services:
 Ho implementato sezioni non richieste dalla consegna per rendere quanto più credibile possibile tutta l'infrastruttura attorno al core del progetto. Quindi ho aggiunto una sezione "sicurezza" del prodotto, "supporto" tenico e certificazione. Mi raccomando di puntare il QR code con lo smartphone o più semplicemente cliccare il link. 
 ## Tecnologie utilizzate:
-FE: HTML, CSS, JavaScript, Bootstrap
+FE: HTML, CSS, JavaScript, Bootstrap. Interfaccia full responsive
