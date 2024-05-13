@@ -63,17 +63,34 @@ const cardContainer = document.getElementById("container-cards")
 // funzione per aggiungere una card al div product-card
 function aggiungiCardProdotto(prodotto) { // passo l'oggetto prodotto
   const card = document.createElement("div"); // Creo una nuova card
-  card.className = "card"; // Aggiungo la classe CSS alla card
+  card.className = "card mb-3"; // Aggiungo la classe CSS alla card
   // creo tag per il nome del prodotto, la marca, il prezzo e l'immagine
   const immagineProdotto = document.createElement("img");
   immagineProdotto.className = "card-img-top"; // Aggiungo la classe per lo stile Bootstrap
   // Imposto l'URL dell'immagine del prodotto come attributo src dell'elemento immagine
   immagineProdotto.src = prodotto.imageUrl; // Assicurati che l'URL sia corretto e contenga l'indirizzo completo dell'immagine
-  const nomeProdotto = document.createElement("h3");
+  immagineProdotto.alt = prodotto.name; // Imposta l'attributo alt con il nome del prodotto
+  // creo un div card-body per contenere i tag creati in stile Bootstrap
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+  // creo tag per il nome del prodotto, la marca, il prezzo e l'immagine
+  const nomeProdotto = document.createElement("h5");
+  nomeProdotto.className = "card-title";
+  nomeProdotto.textContent = prodotto.nome;
+
   const marcaProdotto = document.createElement("p");
+  marcaProdotto.className = "card-text";
+  marcaProdotto.textContent = prodotto.brand;
+
   const descrizioneProdotto = document.createElement("p");
+  descrizioneProdotto.className = "card-text";
+  descrizioneProdotto.textContent = prodotto.description;
+
   const prezzoProdotto = document.createElement("p");
-  //voglio creare due button all'interno della card
+  prezzoProdotto.className = "card-text";
+  prezzoProdotto.textContent = "€ " + prodotto.price;
+
+  // creo due button all'interno della card per la modifica e l'eliminazione della card
   // bottone modifica
   const buttonModifica = document.createElement("div"); // creo elemento div -----TODO
   buttonModifica.classList.add("editButton"); // aggiungo classe css
@@ -87,11 +104,11 @@ function aggiungiCardProdotto(prodotto) { // passo l'oggetto prodotto
   buttonModifica.onclick = () => openEditModal(prodotto); // aggiungo l'event listener per modificare il prodotto
   
   // imposto i valori dei tag creati
-  immagineProdotto.innerText = prodotto.imageUrl;
-  nomeProdotto.innerText = prodotto.name;
-  marcaProdotto.innerText = prodotto.brand;
-  descrizioneProdotto.innerText = prodotto.description;
-  prezzoProdotto.innerText = "€ " + prodotto.price;
+//immagineProdotto.innerText = prodotto.imageUrl;
+//nomeProdotto.innerText = prodotto.name; 
+//marcaProdotto.innerText = prodotto.brand;
+//descrizioneProdotto.innerText = prodotto.description;
+//prezzoProdotto.innerText = "€ " + prodotto.price;
   buttonModifica.innerHTML = "Modifica";
   buttonElimina.innerHTML = "Elimina";
 

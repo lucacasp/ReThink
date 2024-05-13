@@ -28,17 +28,17 @@ window.onload = async () => {
 
             // Popola il contenitore con le card dei prodotti
             productsContainer.innerHTML = `
-                <div class="col-12 box-detail" id="img-detail">
-                    <img src="${products.imageUrl}" >
-                    <div class="mt-3 text-center">
-                        <h4>${products.name}</h4>
-                        <p>${products.description}</p> 
-                        <div class="">
-                            <h6 class="">${products.brand}</h6>
-                            <small><b>€ ${products.price}</b></small>
-                        </div>
+                <div class="card-header">
+                    <img class="img-detail" src="${products.imageUrl}" >
+                </div>
+                    <div class="card-body text-center mt-5">
+                        <h1>${products.brand}</h1>
+                        <h2>${products.name}</h2> 
+                        <h6>${products.description}</h6>
+                        <small>€ ${products.price}</small>
                     </div>
-                </div>  `
+                </div>
+                  `
     };
 
     ottieniProdotti();
