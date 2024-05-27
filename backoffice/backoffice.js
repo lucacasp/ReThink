@@ -1,6 +1,6 @@
 // Definizione dell'URL dell'API e del token di autenticazione
 const url = "https://striveschool-api.herokuapp.com/api/product/";
-const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNhMjYyMjBiM2IyNTAwMTUxYjU0M2EiLCJpYXQiOjE3MTUyNTIyMzQsImV4cCI6MTcxNjQ2MTgzNH0.h_2_BEPFJe2GpPTcm4J2ewe9wwjgLlUqzetC1PbQemU"
+const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNhMjYyMjBiM2IyNTAwMTUxYjU0M2EiLCJpYXQiOjE3MTY4MjA5NTQsImV4cCI6MTcxODAzMDU1NH0.QkB9Ts69bSSgRMqmJOvb7SXtRPuNeLF_ssS5wVV6cwo"
 document.addEventListener("DOMContentLoaded", function(){
 /* ----------------------------------------------------------------------------- GET */
 
